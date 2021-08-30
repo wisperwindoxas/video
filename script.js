@@ -82,7 +82,9 @@ video_link.forEach((photo, index) => {
   video_list.appendChild(img);
 });
 
-video_list.querySelectorAll("img").forEach((play, index) => {
+video_list.querySelectorAll("img").forEach((play, index=0) => {
+  video.setAttribute("poster", `./poster/${video_link[index]}.jpg`);
+  video.setAttribute("src", `./video/${video_link[index]}.mp4`);
   play.addEventListener("click", () => {
     video.setAttribute("poster", `./poster/${video_link[index]}.jpg`);
     video.setAttribute("src", `./video/${video_link[index]}.mp4`);
@@ -117,7 +119,7 @@ range.addEventListener("input", () => {
     volumeRange.querySelector("i.fas").classList.add("fa-volume-down");
   }
 
-  console.log(range.value);
+
 });
 
 document.body.addEventListener("keydown", (e) => {
