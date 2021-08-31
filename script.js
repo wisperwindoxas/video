@@ -97,22 +97,37 @@ progress_container.addEventListener("click", setProgress);
 video.addEventListener("timeupdate", updateProgress);
 video.addEventListener("ended", nextVideo);
 
+function changeVolume(){
+  if(range.value == 0){
+    range.value = 1;
+    video.volume = range.value;
+    volumeRange.querySelector("i.fas").classList.remove("fa-volume-mute");
+     volumeRange.querySelector("i.fas").classList.add("fa-volume-up");
+  }else{
+   range.value = 0
+   video.volume = range.value
+   volumeRange.querySelector("i.fas").classList.remove("fa-volume-up");
+   volumeRange.querySelector("i.fas").classList.add("fa-volume-mute");
+  }
+}
+
+
+
+
 range.addEventListener("input", () => {
   video.volume = range.value;
   if (range.value > 0.8) {
     volumeRange.querySelector("i.fas").classList.remove("fa-volume-mute");
     volumeRange.querySelector("i.fas").classList.add("fa-volume-up");
-    console.log("1" + range.volume);
   }
   if (range.value < 0.6) {
     volumeRange.querySelector("i.fas").classList.remove("fa-volume-up");
     volumeRange.querySelector("i.fas").classList.add("fa-volume-down");
-    console.log("0.5" + range.volume);
   }
   if (range.value <= 0) {
     volumeRange.querySelector("i.fas").classList.remove("fa-volume-down");
     volumeRange.querySelector("i.fas").classList.add("fa-volume-mute");
-    console.log("0" + range.volume);
+
   }
   if (range.value > 0.4) {
     volumeRange.querySelector("i.fas").classList.remove("fa-volume-mute");
@@ -128,6 +143,18 @@ document.body.addEventListener("keydown", (e) => {
   }
 });
 
+
+document.body.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    pause();
+  }else{
+    play();
+  }
+});
+
+
+
+
 smallScreen.addEventListener("click", () => {
   video_player.classList.remove("big");
 });
@@ -135,7 +162,10 @@ smallScreen.addEventListener("click", () => {
 bigScreen.addEventListener("click", () => {
   video_player.classList.add("big");
   bigScreen.addEventListener("keydown", (e) => {
-    e.target.code = "F11";
+    e.keyCode = "F11";
     console.log(e);
   });
 });
+
+
+volumeRange.querySelector('i').addEventListener('click',changeVolume)

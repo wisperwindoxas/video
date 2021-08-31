@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body{
+  background:linear-gradient(to top,rgb(24, 24, 24), rgb(29, 29, 29))
+}
+
 .video_player {
   max-width: 60vw;
   max-height: 70vh;
